@@ -49,12 +49,10 @@ function zip(xs, ys){
 // Question 7
 function insert(x, xs){
     return is_null(xs)
-    ? null
+    ? list(x)
     : x <= head(xs)
     ? pair(x, xs)
-    : x > head(xs)
-    ? pair(head(xs), insert(x, tail(xs)))
-    : null;
+    : pair(head(xs), insert(x, tail(xs)));
 }
 
 // Question 8
@@ -64,7 +62,7 @@ function sort(xs){
     : insert(head(xs), sort(tail(xs)));
     
 }
-sort(list(4,2,3,1));
+
 
 
 

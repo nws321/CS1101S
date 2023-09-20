@@ -20,27 +20,51 @@ function range(a, b, d) {
 }
 
 // Question 4
-function reverse(ls) {
-    function helper(original, reversed){
-        return is_null(original)
-        ? reversed
-        : helper(tail(original), pair(head(original), reversed));
-    }
-    return helper(ls, null);
+function reverse(ls){
+    return is_null(ls)
+    ? null
+    : append(reverse(tail(ls)), list(head(ls)));
 }
 
 // Question 5
-function merge(a, b) {
-    const single = append(a, b);
-    const numbers_bigger = map(y => filter(x => y < x, single), single);
-    const len = map(x => length(x), numbers_bigger);
-    filter(x => )
-    return len;
+function merge(a, b){
+    return is_null(a)
+    ? b
+    : is_null(b)
+    ? a
+    : head(a) <= head(b)
+    ? pair(head(a), merge(tail(a), b))
+    : head(a) >= head(b)
+    ? pair(head(b), merge(a, tail(b)))
+    : null;
 }
-merge(list(1,3,5), list(2,4,6));
 
+// Question 6
+function zip(xs, ys){
+    return is_null(xs)
+    ? null
+    : pair(pair(head(xs), head(ys)), zip(tail(xs), tail(ys)));
+}
 
+// Question 7
+function insert(x, xs){
+    return is_null(xs)
+    ? null
+    : x <= head(xs)
+    ? pair(x, xs)
+    : x > head(xs)
+    ? pair(head(xs), insert(x, tail(xs)))
+    : null;
+}
 
+// Question 8
+function sort(xs){
+    return is_null(xs)
+    ? xs    
+    : insert(head(xs), sort(tail(xs)));
+    
+}
+sort(list(4,2,3,1));
 
 
 
